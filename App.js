@@ -6,6 +6,7 @@
  * @flow strict-local
  */
 
+import codePush from 'react-native-code-push';
 import React from 'react';
 import {
   SafeAreaView,
@@ -14,6 +15,7 @@ import {
   View,
   Text,
   StatusBar,
+  Button,
 } from 'react-native';
 
 import {
@@ -24,7 +26,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+let codePushOptions = {checkFrequency: codePush.CheckFrequency.MANUAL};
+
+let App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -38,9 +42,18 @@ const App: () => React$Node = () => {
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
+          <Button
+            title="Update"
+            onPress={() => {
+              codePush.sync({
+                updateDialog: true,
+                installMode: codePush.InstallMode.IMMEDIATE,
+              });
+            }}
+          />
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
+              <Text style={styles.sectionTitle}>My Name is Jeff</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
@@ -110,5 +123,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
+App = codePush(codePushOptions)(App);
 
 export default App;
