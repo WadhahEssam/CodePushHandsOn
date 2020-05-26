@@ -53,7 +53,7 @@ let App = () => {
           />
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>My Name is Jeff</Text>
+              <Text style={styles.sectionTitle}>This is an update in IOS</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
